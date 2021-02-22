@@ -9,6 +9,13 @@ Builder.load_file('design.kv')
 class LoginScreen(Screen):
   def sign_up(self):
     self.manager.current = "sign_up_screen"
+  
+  def login(self, user, passwrd):
+    with open("users.json") as file:
+      users = json.load(file)
+    if user in users and users[user]['password'] == psswrd:
+      self.manager.current = 'login_screen_success '
+    
 
 class RootWidget(ScreenManager):
   pass
@@ -26,9 +33,15 @@ class SignUpScreen(Screen):
 
 class SignUpScreenSuccess(Screen):
   def go_to_login(self):
+    self.manager.transition.direction = "right"
+    self.manager.current = "login_screen "
     
     self.manager.transition.direction = 'right'
     self.manager.current = "login_screen"
+    
+class LoginScreenSuccess(Screen):
+  def log_out(self):
+        
 
 class MainApp(App):
   def build(self):
