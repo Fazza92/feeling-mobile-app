@@ -14,6 +14,8 @@
         Button:
             text: "Login"
             on_press: root.login(root.ids.username, root.ids.password)
+        Label:
+            text: ""
     GridLayout:
         cols: 2
         Button:
@@ -56,9 +58,14 @@
         Label:
             text: "How do you feel"
         TextInput:
+            id: feeling
             hint_test: "Things to try: happy, sad, etc"
         Button:
             text: "Enlighten me"
+            on_press: root.get_quote(root.ids.feeling.text)
+        Label:
+            id: quote
+            text: ""
 
 <RootWidget>:
     LoginScreen:
