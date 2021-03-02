@@ -42,6 +42,8 @@
 <SignUpScreen>:
     GridLayout:
         cols: 1
+        spacing: 20, 20
+        padding: 20, 20
         Label:
             text: "Sign up here"
         TextInput:
@@ -49,6 +51,7 @@
             hint_text: "Username"
         TextInput:
             id: password
+            password: True
             hint_text: "Password"
         Button: 
             text: "Submit"
@@ -67,9 +70,14 @@
 <LoginScreenSuccess>:
     GridLayout:
         cols: 1
-        Button:
-            text: "Logout" 
-            on_press: log_out()
+        padding: 30, 30
+        spacing: 30, 30
+        RelativeLayout:
+            ImageButton: 
+                on_press: log_out()
+                source: 'logout_hover.png' if self.hovered else 'logout_nothover.png'
+                size_hint: 0.35, 0.35
+                pos_hint: {'center_x': 0.93, 'center_y': 0.8 }
         Label:
             text: "How do you feel"
         TextInput:
@@ -78,9 +86,13 @@
         Button:
             text: "Enlighten me"
             on_press: root.get_quote(root.ids.feeling.text)
-        Label:
-            id: quote
-            text: ""
+        ScrollView:
+            Label:
+                id: quote
+                text: ""
+                text_size: self.width, None
+                size_hint_y: None
+                height: self.texture_size[1]
 
 <RootWidget>:
     LoginScreen:
